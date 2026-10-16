@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infografía Interactiva: Agentes de IA & Gemini Enterprise</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            googleBlue: '#1a73e8',
+            googleBlueHover: '#1557b0',
+            googleBlueLight: '#e8f0fe',
+            googleBlueDark: '#0d47a1',
+            googleRed: '#ea4335',
+            googleRedLight: '#fce8e6',
+            googleYellow: '#fbbc04',
+            googleYellowLight: '#fef7e0',
+            googleGreen: '#34a853',
+            googleGreenLight: '#e6f4ea',
+            gDarkBg: '#131314',
+            gDarkSurface: '#1e1f20',
+            gDarkBorder: '#333538',
+            gLightBg: '#f8fafd',
+            gLightSurface: '#ffffff',
+            gLightBorder: '#e1e3e1'
+          },
+          fontFamily: {
+            sans: ['Inter', 'Google Sans', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['Roboto Mono', 'Fira Code', 'monospace']
+          },
+          boxShadow: {
+            'bento': '0 1px 3px rgba(0,0,0,0.05), 0 10px 24px -8px rgba(0,0,0,0.06)',
+            'bento-hover': '0 4px 6px rgba(0,0,0,0.04), 0 20px 32px -10px rgba(26,115,232,0.12)',
+            'bento-dark': '0 2px 10px rgba(0,0,0,0.4)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .perspective-1000 {
+      perspective: 1000px;
+    }
+    .transform-style-3d {
+      transform-style: preserve-3d;
+    }
+    .backface-hidden {
+      backface-visibility: hidden;
+    }
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+    .bento-card {
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .bento-card:hover {
+      transform: translateY(-2px);
+    }
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .bento-card {
+        box-shadow: none !important;
+        border: 1px solid #cccccc !important;
+        page-break-inside: avoid;
+      }
+      .rotate-y-180 {
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gLightBg text-gray-900 dark:bg-gDarkBg dark:text-gray-100 min-h-screen transition-colors duration-200">
+
+  <!-- ========================================================================= -->
+  <!-- STICKY TOPBAR / HEADER NAVIGATION                                         -->
+  <!-- ========================================================================= -->
+  <header class="sticky top-0 z-50 bg-white/90 dark:bg-gDarkSurface/90 backdrop-blur-md border-b border-gLightBorder dark:border-gDarkBorder transition-colors no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand & Badges -->
+      <div class="flex items-center space-x-3">
+        <div class="flex items-center space-x-1 bg-gray-100 dark:bg-gDarkBg p-1.5 rounded-full border border-gray-200 dark:border-gDarkBorder">
+          <span class="w-2.5 h-2.5 rounded-full bg-googleBlue"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-googleRed"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-googleYellow"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-googleGreen"></span>
+        </div>
+        <div>
+          <span class="font-extrabold text-sm sm:text-base tracking-tight text-gray-900 dark:text-white flex items-center gap-2">
+            AI Agents & Gemini Enterprise
+            <span class="text-[10px] uppercase font-bold px-2 py-0.5 rounded-md bg-googleBlueLight text-googleBlue dark:bg-blue-950/60 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
+              Infografía Interactiva
+            </span>
+          </span>
+          <p class="text-[11px] text-gray-500 dark:text-gray-400 hidden sm:block">
+            Guía de Estudio Visual para Estudiantes &bull; Google Cloud
+          </p>
+        </div>
+      </div>
+
+      <!-- Quick Action Utilities -->
+      <div class="flex items-center space-x-2">
+        <!-- Print / PDF Button -->
+        <button onclick="window.print()" class="flex items-center space-x-1.5 px-3 py-1.5 text-xs font-semibold rounded-xl bg-gray-100 dark:bg-gDarkBg hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gLightBorder dark:border-gDarkBorder transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+          <span class="hidden md:inline">Descargar PDF / Imprimir</span>
+        </button>
+
+        <!-- Dark Mode Toggle -->
+        <button id="themeToggleBtn" aria-label="Cambiar Tema" class="p-2 rounded-xl text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gDarkBg hover:bg-gray-200 dark:hover:bg-gray-800 border border-gLightBorder dark:border-gDarkBorder transition">
+          <svg id="sunIcon" class="w-4 h-4 hidden dark:block text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg id="moonIcon" class="w-4 h-4 block dark:hidden text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Category Filter Bar (Pill Chips) -->
+    <div class="border-t border-gLightBorder/60 dark:border-gDarkBorder/60 py-2 overflow-x-auto">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center space-x-2 text-xs">
+        <span class="text-gray-400 dark:text-gray-500 font-semibold uppercase text-[10px] tracking-wider mr-1">Filtrar:</span>
+        <button onclick="filterBento('all')" class="filter-pill active px-3 py-1 rounded-full font-bold bg-googleBlue text-white border border-googleBlue transition">
+          Todos los módulos
+        </button>
+        <button onclick="filterBento('fundamentos')" class="filter-pill px-3 py-1 rounded-full font-medium bg-white dark:bg-gDarkBg text-gray-700 dark:text-gray-300 border border-gLightBorder dark:border-gDarkBorder hover:border-googleBlue transition">
+          1. Cambio de Paradigma
+        </button>
+        <button onclick="filterBento('anatomia')" class="filter-pill px-3 py-1 rounded-full font-medium bg-white dark:bg-gDarkBg text-gray-700 dark:text-gray-300 border border-gLightBorder dark:border-gDarkBorder hover:border-googleBlue transition">
+          2. Anatomía del Agente
+        </button>
+        <button onclick="filterBento('react')" class="filter-pill px-3 py-1 rounded-full font-medium bg-white dark:bg-gDarkBg text-gray-700 dark:text-gray-300 border border-gLightBorder dark:border-gDarkBorder hover:border-googleBlue transition">
+          3. Bucle ReAct
+        </button>
+        <button onclick="filterBento('criterio')" class="filter-pill px-3 py-1 rounded-full font-medium bg-white dark:bg-gDarkBg text-gray-700 dark:text-gray-300 border border-gLightBorder dark:border-gDarkBorder hover:border-googleBlue transition">
+          4. ¿Cuándo Usar?
+        </button>
+        <button onclick="filterBento('enterprise')" class="filter-pill px-3 py-1 rounded-full font-medium bg-white dark:bg-gDarkBg text-gray-700 dark:text-gray-300 border border-gLightBorder dark:border-gDarkBorder hover:border-googleBlue transition">
+          5. Gemini Enterprise
+        </button>
+        <button onclick="filterBento('quiz')" class="filter-pill px-3 py-1 rounded-full font-medium bg-white dark:bg-gDarkBg text-gray-700 dark:text-gray-300 border border-gLightBorder dark:border-gDarkBorder hover:border-googleBlue transition">
+          6. Flashcards & Quiz
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- MAIN BENTO GRID CONTAINER                                                 -->
+  <!-- ========================================================================= -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+    <!-- ======================================================================= -->
+    <!-- HERO INFOGRAPHIC: THE AGENTIC SHIFT                                     -->
+    <!-- ======================================================================= -->
+    <section id="section-fundamentos" class="bento-section">
+      <div class="bento-card bg-white dark:bg-gDarkSurface rounded-3xl p-6 sm:p-10 border border-gLightBorder dark:border-gDarkBorder shadow-bento dark:shadow-bento-dark relative overflow-hidden">
+        
+        <!-- Background Ambient Glow -->
+        <div class="absolute -right-20 -top-20 w-96 h-96 bg-googleBlue/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -left-20 -bottom-20 w-96 h-96 bg-googleGreen/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="relative z-10">
+          <div class="flex items-center space-x-2 mb-3">
+            <span class="px-2.5 py-1 text-xs font-black rounded-lg bg-googleBlueLight text-googleBlue dark:bg-blue-950/70 dark:text-blue-300 border border-blue-200 dark:border-blue-900 uppercase tracking-wider">
+              El Gran Salto Tecnológico
+            </span>
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-semibold">&bull; De Generative AI a Agentic Era</span>
+          </div>
+          
+          <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-gray-900 dark:text-white leading-tight max-w-4xl">
+            The Agentic Era: <span class="text-googleBlue dark:text-blue-400">From Answering to Acting</span>
+          </h1>
+          <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 mt-3 max-w-3xl leading-relaxed">
+            Hemos pasado de modelos que simplemente <em>saben responder</em> preguntas en lenguaje natural a sistemas de software que <em>tienen autonomía para actuar</em>, usar herramientas informáticas y resolver problemas de punta a punta.
+          </p>
+
+          <!-- Visual Comparison Infographic (2 Column Bento) -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+            
+            <!-- Side A: GenAI Chatbot -->
+            <div class="p-6 rounded-2xl bg-gray-50 dark:bg-gDarkBg border border-gray-200 dark:border-gDarkBorder flex flex-col justify-between relative">
+              <div class="absolute top-4 right-4 text-xs font-black text-gray-400 uppercase tracking-wider">
+                Ayer &bull; GenAI Clásica
+              </div>
+              <div>
+                <div class="w-12 h-12 rounded-2xl bg-gray-200 dark:bg-gray-800 flex items-center justify-center text-2xl mb-4">
+                  💬
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white">El Modelo Consulta (Answering)</h3>
+                <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-2 leading-relaxed">
+                  Genera texto probabilístico basado en su entrenamiento previo. Está <strong>congelado en el tiempo</strong> y no tiene "brazos" para interactuar con sistemas reales.
+                </p>
+                <div class="mt-4 p-3.5 rounded-xl bg-white dark:bg-gDarkSurface border border-gray-200 dark:border-gray-700 text-xs font-mono text-gray-700 dark:text-gray-300">
+                  <span class="text-gray-400">// Prompt del usuario</span><br>
+                  "¿Cuáles son los pasos para reservar un hotel en París?"<br>
+                  <span class="text-googleBlue font-semibold">&rarr; Te devuelve un texto explicativo, pero TÚ debes hacer los clics.</span>
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-gray-200 dark:border-gray-800 flex items-center justify-between text-xs text-gray-500">
+                <span>Rol: <strong>Consultor estático</strong></span>
+                <span class="text-googleRed font-bold">Sin acciones en el entorno</span>
+              </div>
+            </div>
+
+            <!-- Side B: Real AI Agent -->
+            <div class="p-6 rounded-2xl bg-gradient-to-br from-blue-50/50 to-emerald-50/40 dark:from-blue-950/20 dark:to-emerald-950/20 border-2 border-googleBlue/40 dark:border-blue-500/40 flex flex-col justify-between relative">
+              <div class="absolute top-4 right-4 text-xs font-black text-googleBlue dark:text-blue-400 uppercase tracking-wider">
+                Hoy &bull; Agentic AI
+              </div>
+              <div>
+                <div class="w-12 h-12 rounded-2xl bg-googleBlue text-white flex items-center justify-center text-2xl mb-4 shadow-md">
+                  🤖
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white">El Agente Autónomo (Acting)</h3>
+                <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-2 leading-relaxed">
+                  Tiene un <strong>objetivo asignado</strong>. Descompone la tarea, consulta APIs, captura errores y reacciona de forma dinámica hasta completar la misión.
+                </p>
+                <div class="mt-4 p-3.5 rounded-xl bg-white dark:bg-gDarkSurface border border-blue-200 dark:border-blue-900 text-xs font-mono text-gray-800 dark:text-gray-200">
+                  <span class="text-gray-400">// Meta asignada</span><br>
+                  "Encuentra hotel en París bajo presupuesto de $800 y agenda en Calendar."<br>
+                  <span class="text-googleGreen font-bold">&rarr; Valida fechas, consulta Booking API, reserva y envía confirmación.</span>
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-blue-100 dark:border-blue-900/50 flex items-center justify-between text-xs text-gray-600 dark:text-gray-300">
+                <span>Rol: <strong>Empleado ejecutor</strong></span>
+                <span class="text-googleGreen font-bold flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-googleGreen inline-block"></span> Altera su entorno
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Quote Pill -->
+          <div class="mt-6 p-4 rounded-2xl bg-gray-100 dark:bg-gDarkBg border border-gLightBorder dark:border-gDarkBorder flex items-center justify-between flex-wrap gap-2 text-xs">
+            <div class="flex items-center space-x-2">
+              <span class="text-lg">💡</span>
+              <span class="font-medium text-gray-700 dark:text-gray-300">
+                <strong>Regla de Oro:</strong> "Un chatbot genera secuencias de texto. Un agente utiliza herramientas para alterar su entorno."
+              </span>
+            </div>
+            <span class="text-xs font-bold text-googleBlue dark:text-blue-400">Google Cloud Architecture Principle</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- BENTO SECTION 2: ANATOMY & 5 PILLARS OF A REAL AGENT                    -->
+    <!-- ======================================================================= -->
+    <section id="section-anatomia" class="bento-section">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Card 1: The Core Formula (Col-span 1) -->
+        <div class="bento-card bg-white dark:bg-gDarkSurface rounded-3xl p-6 sm:p-8 border border-gLightBorder dark:border-gDarkBorder shadow-bento dark:shadow-bento-dark flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-amber-100 dark:bg-yellow-950/60 text-amber-800 dark:text-yellow-300 border border-amber-200 dark:border-amber-800">
+              Fórmula Matemática Base
+            </span>
+            <h2 class="text-2xl font-black text-gray-900 dark:text-white mt-3">
+              Anatomía de un Agente
+            </h2>
+            <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">
+              Un agente no es magia; es la intersección de tres elementos de software:
+            </p>
+
+            <!-- Formula Visual Stack -->
+            <div class="mt-6 space-y-3 font-mono text-xs">
+              <div class="p-3.5 rounded-2xl bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900/40 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                  <span class="text-xl">🧠</span>
+                  <div>
+                    <strong class="text-googleRed">Modelo (Pensar)</strong>
+                    <p class="text-[11px] text-gray-600 dark:text-gray-400 font-sans">El motor de razonamiento (Gemini)</p>
+                  </div>
+                </div>
+                <span class="text-lg font-bold text-googleRed">+</span>
+              </div>
+
+              <div class="p-3.5 rounded-2xl bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900/40 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                  <span class="text-xl">🛠️</span>
+                  <div>
+                    <strong class="text-googleBlue">Herramientas (Hacer)</strong>
+                    <p class="text-[11px] text-gray-600 dark:text-gray-400 font-sans">APIs, SQL BigQuery, emails, docs</p>
+                  </div>
+                </div>
+                <span class="text-lg font-bold text-googleBlue">+</span>
+              </div>
+
+              <div class="p-3.5 rounded-2xl bg-purple-50 dark:bg-purple-950/20 border border-purple-200 dark:border-purple-900/40 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                  <span class="text-xl">🔄</span>
+                  <div>
+                    <strong class="text-purple-600 dark:text-purple-400">Orquestación (Proceso)</strong>
+                    <p class="text-[11px] text-gray-600 dark:text-gray-400 font-sans">El bucle iterativo de control</p>
+                  </div>
+                </div>
+                <span class="text-lg font-bold text-purple-600">=</span>
+              </div>
+
+              <div class="p-4 rounded-2xl bg-emerald-100 dark:bg-green-950/40 border-2 border-googleGreen text-emerald-950 dark:text-green-200 font-sans text-center">
+                <span class="font-extrabold text-sm text-googleGreen">⚡ AGENTE INTELIGENTE AUTÓNOMO</span>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-[11px] text-gray-500 mt-4 italic">
+            El modelo razona qué herramienta usar, el código la ejecuta y el orquestador le devuelve el resultado.
+          </p>
+        </div>
+
+        <!-- Card 2: The 5 Fundamental Pillars (Col-span 2) -->
+        <div class="lg:col-span-2 bento-card bg-white dark:bg-gDarkSurface rounded-3xl p-6 sm:p-8 border border-gLightBorder dark:border-gDarkBorder shadow-bento dark:shadow-bento-dark flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-googleBlueLight dark:bg-blue-950/60 text-googleBlue dark:text-blue-300 border border-blue-200 dark:border-blue-900">
+                  Capacidades del Sistema
+                </span>
+                <h2 class="text-2xl font-black text-gray-900 dark:text-white mt-1">
+                  Los 5 Pilares de un Agente Real
+                </h2>
+              </div>
+              <span class="text-xs font-mono font-bold text-gray-400">5 Capabilities</span>
+            </div>
+            <p class="text-xs text-gray-600 dark:text-gray-400 mt-1 mb-6">
+              Para calificar como un agente real en arquitectura de software, debe cumplir con estos atributos:
+            </p>
+
+            <!-- 5 Badges Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5">
+              
+              <!-- Pillar 1 -->
+              <div class="p-4 rounded-2xl bg-gray-50 dark:bg-gDarkBg border border-gray-200 dark:border-gDarkBorder">
+                <div class="text-2xl mb-1.5">📡</div>
+                <h4 class="text-xs font-bold text-gray-900 dark:text-white">Consciente del Entorno</h4>
+                <p class="text-[11px] text-gray-600 dark:text-gray-400 mt-1 leading-relaxed">
+                  Lee códigos de estado HTTP, detecta caídas de red o datos vacíos y adapta su enfoque.
+                </p>
+              </div>
+
+              <!-- Pillar 2 -->
+              <div class="p-4 rounded-2xl bg-gray-50 dark:bg-gDarkBg border border-gray-200 dark:border-gDarkBorder">
+                <div class="text-2xl mb-1.5">🎯</div>
+                <h4 class="text-xs font-bold text-gray-900 dark:text-white">Orientado a Metas</h4>
+                <p class="text-[11px] text-gray-600 dark:text-gray-400 mt-1 leading-relaxed">
+                  Trabaja hacia un estado final deseado, en lugar de solo contestar pasivamente el último prompt.
+                </p>
+              </div>
+
+              <!-- Pillar 3 -->
+              <div class="p-4 rounded-2xl bg-gray-50 dark:bg-gDarkBg border border-gray-200 dark:border-gDarkBorder">
+                <div class="text-2xl mb-1.5">🧭</div>
+                <h4 class="text-xs font-bold text-gray-900 dark:text-white">Autónomo</h4>
+                <p class="text-[11px] text-gray-600 dark:text-gray-400 mt-1 leading-relaxed">
+                  Determina por sí mismo los pasos intermedios sin que un humano le dicte cada acción.
+                </p>
+              </div>
+
+              <!-- Pillar 4 -->
+              <div class="p-4 rounded-2xl bg-gray-50 dark:bg-gDarkBg border border-gray-200 dark:border-gDarkBorder">
+                <div class="text-2xl mb-1.5">🔧</div>
+                <h4 class="text-xs font-bold text-gray-900 dark:text-white">Usa Herramientas</h4>
+                <p class="text-[11px] text-gray-600 dark:text-gray-400 mt-1 leading-relaxed">
+                  Invoca bases de datos, envía emails, busca en la web y ejecuta código seguro mediante Tool Calling.
+                </p>
+              </div>
+
+              <!-- Pillar 5 -->
+              <div class="p-4 rounded-2xl bg-gray-50 dark:bg-gDarkBg border border-gray-200 dark:border-gDarkBorder">
+                <div class="text-2xl mb-1.5">⚡</div>
+                <h4 class="text-xs font-bold text-gray-900 dark:text-white">Proactivo</h4>
+                <p class="text-[11px] text-gray-600 dark:text-gray-400 mt-1 leading-relaxed">
+                  Toma la iniciativa: identifica si faltan datos clave y los solicita o investiga antes de responder.
+                </p>
+              </div>
+
+              <!-- Special Pill: The Real Commute Planner -->
+              <div class="p-4 rounded-2xl bg-googleBlueLight/50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900 flex flex-col justify-between">
+                <div>
+                  <span class="text-[10px] font-black text-googleBlue uppercase">Ejemplo Real</span>
+                  <h4 class="text-xs font-bold text-gray-900 dark:text-white mt-0.5">Commute Planner</h4>
+                  <p class="text-[11px] text-gray-600 dark:text-gray-300 mt-1">
+                    Cruza lluvia + retraso en metro + reunión en 2 hrs &rarr; te recomienda usar el ascensor este.
+                  </p>
+                </div>
+                <span class="text-[10px] font-mono text-googleBlue font-bold mt-2">Multi-Tool Synergy</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Evolutionary Spectrum Tier Ribbon -->
+          <div class="mt-6 pt-4 border-t border-gLightBorder dark:border-gDarkBorder">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+              <div class="p-2.5 rounded-xl bg-gray-50 dark:bg-gDarkBg border border-gray-200 dark:border-gray-800">
+                <span class="font-bold text-gray-500">Tier 1: El Consultor</span>
+                <p class="text-[11px] text-gray-500 mt-0.5">Solo da consejos en texto. Cero ejecución.</p>
+              </div>
+              <div class="p-2.5 rounded-xl bg-gray-50 dark:bg-gDarkBg border border-gray-200 dark:border-gray-800">
+                <span class="font-bold text-amber-600">Tier 2: El Asistente</span>
+                <p class="text-[11px] text-gray-500 mt-0.5">Usa herramientas con micro-gestión humana.</p>
+              </div>
+              <div class="p-2.5 rounded-xl bg-emerald-50 dark:bg-green-950/20 border border-green-200 dark:border-green-900">
+                <span class="font-bold text-googleGreen">Tier 3: El Empleado</span>
+                <p class="text-[11px] text-gray-600 dark:text-gray-300 mt-0.5">Autonomía total hacia metas con recuperación ante fallos.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- INTERACTIVE INFOGRAPHIC: THE REACT REASONING LOOP                       -->
+    <!-- ======================================================================= -->
+    <section id="section-react" class="bento-section">
+      <div class="bento-card bg-white dark:bg-gDarkSurface rounded-3xl p-6 sm:p-10 border-2 border-purple-500/30 dark:border-purple-500/40 shadow-bento dark:shadow-bento-dark">
+        
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gLightBorder dark:border-gDarkBorder pb-4 mb-6">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="px-2.5 py-1 text-xs font-black rounded-lg bg-purple-100 text-purple-700 dark:bg-purple-950/60 dark:text-purple-300 border border-purple-200 dark:border-purple-800 uppercase tracking-wider">
+                Motor de Razonamiento
+              </span>
+              <span class="text-xs text-gray-400 font-mono font-bold">ReAct = Reason + Act</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-black text-gray-900 dark:text-white mt-1">
+              ¿Cómo Piensa un Agente? El Bucle ReAct en Vivo
+            </h2>
+            <p class="text-xs text-gray-600 dark:text-gray-400 mt-0.5">
+              Haz clic en los pasos para explorar cómo el modelo descompone un problema real de conciliación contable sin alucinar.
+            </p>
+          </div>
+
+          <!-- Simulation Interactive Controller -->
+          <div class="flex items-center space-x-2">
+            <button id="simPrevBtn" class="px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gDarkBg text-xs font-bold hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+              &larr; Anterior
+            </button>
+            <button id="simNextBtn" class="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold shadow-md transition flex items-center space-x-1.5">
+              <span>Siguiente Paso</span>
+              <span class="bg-purple-800 px-1.5 py-0.5 rounded text-[10px]" id="simStepIndicator">1/4</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 4 Step Pipeline Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4" id="reactPipelineGrid">
+          
+          <!-- Step 1: User Request -->
+          <div id="simCard1" class="p-5 rounded-2xl border-2 border-purple-500 bg-purple-50/40 dark:bg-purple-950/20 transition-all cursor-pointer" onclick="goToSimStep(1)">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[10px] font-black text-purple-700 dark:text-purple-300 uppercase tracking-wider">01. Objetivo</span>
+              <span class="w-5 h-5 rounded-full bg-purple-600 text-white text-[10px] font-bold flex items-center justify-center">1</span>
+            </div>
+            <h4 class="text-xs font-bold text-gray-900 dark:text-white">Pregunta del Usuario</h4>
+            <div class="mt-2.5 p-3 rounded-xl bg-white dark:bg-gDarkBg border border-purple-200 dark:border-purple-900 text-xs text-gray-800 dark:text-gray-200">
+              "¿Cuánto gastamos en licencias en la nube en Q3 y por qué subió tanto respecto a Q2?"
+            </div>
+            <div class="mt-3 flex items-center gap-1.5 text-[10px] text-purple-700 dark:text-purple-300 font-semibold">
+              <span>🎯 Meta:</span> Recopilar datos y justificar anomalía
+            </div>
+          </div>
+
+          <!-- Step 2: Thought -->
+          <div id="simCard2" class="p-5 rounded-2xl border border-gray-200 dark:border-gDarkBorder opacity-40 hover:opacity-80 transition-all cursor-pointer" onclick="goToSimStep(2)">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[10px] font-black text-googleBlue uppercase tracking-wider">02. Thought (Razonar)</span>
+              <span class="w-5 h-5 rounded-full bg-googleBlue text-white text-[10px] font-bold flex items-center justify-center">2</span>
+            </div>
+            <h4 class="text-xs font-bold text-gray-900 dark:text-white">Inferencia Lógica</h4>
+            <div class="mt-2.5 p-3 rounded-xl bg-white dark:bg-gDarkBg border border-blue-200 dark:border-blue-900 text-xs font-mono text-googleBlueDark dark:text-blue-300">
+              "No tengo la base de datos en mi memoria estática. Primero debo consultar la tabla financiera de BigQuery para Q2 y Q3."
+            </div>
+            <div class="mt-3 flex items-center gap-1.5 text-[10px] text-googleBlue font-semibold">
+              <span>🧠 Deducción:</span> Requiere llamar herramienta SQL
+            </div>
+          </div>
+
+          <!-- Step 3: Action -->
+          <div id="simCard3" class="p-5 rounded-2xl border border-gray-200 dark:border-gDarkBorder opacity-40 hover:opacity-80 transition-all cursor-pointer" onclick="goToSimStep(3)">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[10px] font-black text-amber-600 uppercase tracking-wider">03. Action (Herramienta)</span>
+              <span class="w-5 h-5 rounded-full bg-amber-500 text-white text-[10px] font-bold flex items-center justify-center">3</span>
+            </div>
+            <h4 class="text-xs font-bold text-gray-900 dark:text-white">Tool Call Estructurado</h4>
+            <div class="mt-2.5 p-3 rounded-xl bg-white dark:bg-gDarkBg border border-amber-200 dark:border-amber-900 text-[11px] font-mono text-gray-800 dark:text-gray-200">
+              run_sql_query(<br>
+              &nbsp;&nbsp;table="costos_infra",<br>
+              &nbsp;&nbsp;quarters=["Q2","Q3"]<br>
+              )
+            </div>
+            <div class="mt-3 flex items-center gap-1.5 text-[10px] text-amber-600 font-semibold">
+              <span>⚡ Ejecución:</span> Conexión segura a BigQuery
+            </div>
+          </div>
+
+          <!-- Step 4: Observation & Answer -->
+          <div id="simCard4" class="p-5 rounded-2xl border border-gray-200 dark:border-gDarkBorder opacity-40 hover:opacity-80 transition-all cursor-pointer" onclick="goToSimStep(4)">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[10px] font-black text-googleGreen uppercase tracking-wider">04. Observation</span>
+              <span class="w-5 h-5 rounded-full bg-googleGreen text-white text-[10px] font-bold flex items-center justify-center">4</span>
+            </div>
+            <h4 class="text-xs font-bold text-gray-900 dark:text-white">Verificación & Respuesta</h4>
+            <div class="mt-2.5 p-3 rounded-xl bg-white dark:bg-gDarkBg border border-green-200 dark:border-green-900 text-xs text-gray-800 dark:text-gray-200">
+              <strong>Retorno Real:</strong> Q2: $41,200 | Q3: $78,500.<br>
+              <strong>Causa:</strong> Ingesta de 5 cluster de Kubernetes para nuevo modelo de IA.
+            </div>
+            <div class="mt-3 flex items-center gap-1.5 text-[10px] text-googleGreen font-semibold">
+              <span>✓ Resultado:</span> Respuesta fundamentada con evidencia
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Detail Inspector for Active Step -->
+        <div class="mt-6 p-4 rounded-2xl bg-gray-50 dark:bg-gDarkBg border border-gLightBorder dark:border-gDarkBorder">
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="text-[10px] font-bold uppercase text-purple-600 tracking-wider">Inspección de Telemetría (Payload)</span>
+              <h5 class="text-xs sm:text-sm font-bold text-gray-900 dark:text-white mt-0.5" id="simPayloadTitle">
+                Paso 1: Recepción de Intención Humana
+              </h5>
+              <p class="text-xs text-gray-600 dark:text-gray-300 mt-1" id="simPayloadDesc">
+                El usuario introduce una consulta ambigua. El modelo analiza los tokens para identificar si se trata de un simple saludo o de un requerimiento que exige orquestación de herramientas externas.
+              </p>
+            </div>
+            <span class="text-[10px] font-mono px-2 py-1 bg-white dark:bg-gDarkSurface rounded border border-gray-200 dark:border-gray-700 text-gray-500">
+              State: <span id="simPayloadState" class="text-purple-600 font-bold">INPUT_ANALYSIS</span>
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- INFOGRAPHIC FLOWCHART: ¿CUÁNDO SÍ Y CUÁNDO NO USAR AGENTES?            -->
+    <!-- ======================================================================= -->
+    <section id="section-criterio" class="bento-section">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Decision Matrix Infographic (8 Cols) -->
+        <div class="lg:col-span-7 bento-card bg-white dark:bg-gDarkSurface rounded-3xl p-6 sm:p-8 border border-gLightBorder dark:border-gDarkBorder shadow-bento dark:shadow-bento-dark flex flex-col justify-between">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="text-[10px] font-black uppercase px-2 py-0.5 rounded bg-googleGreenLight text-googleGreen dark:bg-green-950/60 dark:text-green-300 border border-green-200 dark:border-green-800">
+                Criterio de Ingeniería
+              </span>
+              <span class="text-xs text-gray-400 font-semibold">&bull; Matriz de Decisión</span>
+            </div>
+            <h2 class="text-2xl font-black text-gray-900 dark:text-white mt-1">
+              ¿Cuándo usar (y cuándo NO usar) un Agente?
+            </h2>
+            <p class="text-xs text-gray-600 dark:text-gray-400 mt-1 mb-6">
+              ¡No todo necesita un agente! Construir un agente para una tarea simple solo añade latencia y costos.
+            </p>
+
+            <!-- 3 Decision Branches -->
+            <div class="space-y-3.5">
+              
+              <!-- Case 1: Pure LLM -->
+              <div class="p-4 rounded-2xl bg-gray-50 dark:bg-gDarkBg border-l-4 border-l-googleBlue border-gray-200 dark:border-gDarkBorder flex items-start justify-between">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="text-xs font-bold text-googleBlue uppercase">Caso 1 &bull; Inferencia Pura</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-900 text-googleBlue font-bold">Un solo paso</span>
+                  </div>
+                  <h4 class="text-sm font-bold text-gray-900 dark:text-white mt-1">Resumir texto, clasificar correos o traducir</h4>
+                  <p class="text-xs text-gray-600 dark:text-gray-400 mt-0.5">
+                    No requiere conectarse a otros servicios ni tomar decisiones sucesivas.
+                  </p>
+                </div>
+                <div class="text-right">
+                  <span class="inline-block text-xs font-bold px-2.5 py-1 rounded-lg bg-blue-50 dark:bg-blue-950 text-googleBlue border border-blue-200 dark:border-blue-800 whitespace-nowrap">
+                    Usa API Simple LLM
+                  </span>
+                </div>
+              </div>
+
+              <!-- Case 2: Deterministic Workflow -->
+              <div class="p-4 rounded-2xl bg-gray-50 dark:bg-gDarkBg border-l-4 border-l-amber-500 border-gray-200 dark:border-gDarkBorder flex items-start justify-between">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="text-xs font-bold text-amber-600 uppercase">Caso 2 &bull; Pasos Fijos y Predecibles</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-yellow-100 dark:bg-yellow-900 text-amber-800 font-bold">Reglas fijas</span>
+                  </div>
+                  <h4 class="text-sm font-bold text-gray-900 dark:text-white mt-1">Si entra formulario &rarr; guardar en DB &rarr; mandar email</h4>
+                  <p class="text-xs text-gray-600 dark:text-gray-400 mt-0.5">
+                    No hay ambigüedad ni incertidumbre; no uses IA para lo que resuelve un `if/else`.
+                  </p>
+                </div>
+                <div class="text-right">
+                  <span class="inline-block text-xs font-bold px-2.5 py-1 rounded-lg bg-amber-50 dark:bg-yellow-950 text-amber-700 border border-amber-200 dark:border-yellow-800 whitespace-nowrap">
+                    Workflow Clásico
+                  </span>
+                </div>
+              </div>
+
+              <!-- Case 3: The True Agent -->
+              <div class="p-4 rounded-2xl bg-emerald-50/50 dark:bg-green-950/20 border-l-4 border-l-googleGreen border-green-200 dark:border-green-800 flex items-start justify-between">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <span class="text-xs font-bold text-googleGreen uppercase">Caso 3 &bull; Incertidumbre + Herramientas</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-green-100 dark:bg-green-900 text-googleGreen font-bold">Alta variabilidad</span>
+                  </div>
+                  <h4 class="text-sm font-bold text-gray-900 dark:text-white mt-1">Investigar anomalías contables o soporte adaptativo</h4>
+                  <p class="text-xs text-gray-600 dark:text-gray-300 mt-0.5">
+                    Los pasos dependen de lo que descubre en el camino y debe interactuar con APIs externas.
+                  </p>
+                </div>
+                <div class="text-right">
+                  <span class="inline-block text-xs font-bold px-2.5 py-1 rounded-lg bg-googleGreen text-white shadow-sm whitespace-nowrap">
+                    ¡CONSTRUYE UN AGENTE!
+                  </span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="mt-4 p-3 rounded-xl bg-gray-100 dark:bg-gDarkBg text-center text-xs font-semibold text-gray-700 dark:text-gray-300">
+            📌 "Los agentes brillan cuando el razonamiento adaptativo choca con acciones externas."
+          </div>
+        </div>
+
+        <!-- Interactive Use Case Checker Tool (5 Cols) -->
+        <div class="lg:col-span-5 bento-card bg-gradient-to-br from-white to-blue-50/30 dark:from-gDarkSurface dark:to-gDarkBg rounded-3xl p-6 sm:p-8 border border-gLightBorder dark:border-gDarkBorder shadow-bento dark:shadow-bento-dark flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-googleBlueLight text-googleBlue dark:bg-blue-950/60 dark:text-blue-300 border border-blue-200 dark:border-blue-900">
+              Calculadora Interactiva
+            </span>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mt-2">
+              Evalúa tu Caso de Uso en Segundos
+            </h3>
+            <p class="text-xs text-gray-600 dark:text-gray-400 mt-1 mb-4">
+              Selecciona las características de tu problema para conocer la arquitectura recomendada:
+            </p>
+
+            <!-- Quiz Questions Form -->
+            <div class="space-y-3.5 text-xs">
+              <div>
+                <label class="block font-bold text-gray-800 dark:text-gray-200 mb-1">
+                  1. ¿El problema tiene pasos encadenados dependientes?
+                </label>
+                <div class="flex gap-3">
+                  <label class="flex items-center gap-1.5 cursor-pointer">
+                    <input type="radio" name="calc_steps" value="multi" checked class="text-googleBlue" onchange="runArchitectureCalc()">
+                    <span>Sí, múltiples</span>
+                  </label>
+                  <label class="flex items-center gap-1.5 cursor-pointer">
+                    <input type="radio" name="calc_steps" value="single" class="text-googleBlue" onchange="runArchitectureCalc()">
+                    <span>No, tarea única</span>
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <label class="block font-bold text-gray-800 dark:text-gray-200 mb-1">
+                  2. ¿El camino cambia según lo que descubre (incertidumbre)?
+                </label>
+                <div class="flex gap-3">
+                  <label class="flex items-center gap-1.5 cursor-pointer">
+                    <input type="radio" name="calc_adapt" value="yes" checked class="text-googleBlue" onchange="runArchitectureCalc()">
+                    <span>Sí, adaptativo</span>
+                  </label>
+                  <label class="flex items-center gap-1.5 cursor-pointer">
+                    <input type="radio" name="calc_adapt" value="no" class="text-googleBlue" onchange="runArchitectureCalc()">
+                    <span>No, reglas fijas</span>
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <label class="block font-bold text-gray-800 dark:text-gray-200 mb-1">
+                  3. ¿Debe accionar o modificar sistemas externos?
+                </label>
+                <div class="flex gap-3">
+                  <label class="flex items-center gap-1.5 cursor-pointer">
+                    <input type="radio" name="calc_tools" value="yes" checked class="text-googleBlue" onchange="runArchitectureCalc()">
+                    <span>Sí, APIs / bases</span>
+                  </label>
+                  <label class="flex items-center gap-1.5 cursor-pointer">
+                    <input type="radio" name="calc_tools" value="no" class="text-googleBlue" onchange="runArchitectureCalc()">
+                    <span>No, solo texto</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Output Chip -->
+          <div id="calcVerdictBox" class="mt-6 p-4 rounded-2xl bg-emerald-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800">
+            <span class="text-[10px] font-black uppercase text-googleGreen tracking-wider">Veredicto Arquitectural</span>
+            <h4 class="text-sm font-black text-gray-900 dark:text-white mt-0.5" id="calcVerdictTitle">
+              🤖 Arquitectura: Agente Autónomo (Vertex AI / ADK)
+            </h4>
+            <p class="text-xs text-gray-600 dark:text-gray-300 mt-1 leading-relaxed" id="calcVerdictDesc">
+              Cumple con la tríada: encadenamiento de tareas, incertidumbre y necesidad de interactuar con herramientas informáticas.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- BENTO 3: GEMINI ENTERPRISE DEEP-DIVE                                     -->
+    <!-- ======================================================================= -->
+    <section id="section-enterprise" class="bento-section">
+      <div class="space-y-6">
+        
+        <!-- Big Bento Header: What is Gemini Enterprise? -->
+        <div class="bento-card bg-gradient-to-r from-googleBlue/10 via-white to-purple-500/10 dark:from-blue-950/40 dark:via-gDarkSurface dark:to-purple-950/30 rounded-3xl p-6 sm:p-10 border border-gLightBorder dark:border-gDarkBorder shadow-bento dark:shadow-bento-dark">
+          <div class="max-w-3xl">
+            <span class="px-2.5 py-1 text-xs font-black rounded-lg bg-googleBlue text-white uppercase tracking-wider">
+              Enfoque Empresarial
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-black text-gray-900 dark:text-white mt-2">
+              Gemini Enterprise: El Agente Corporativo Listo para Producción
+            </h2>
+            <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-2 leading-relaxed">
+              Mientras que construir un agente desde cero requiere programar APIs, orquestadores y bases vectoriales, <strong>Gemini Enterprise</strong> empaqueta la inteligencia agéntica directamente sobre los datos de tu empresa con garantías corporativas de privacidad y gobernanza.
+            </p>
+          </div>
+
+          <!-- Feature Cards Grid (4 Features) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+            
+            <div class="p-4 rounded-2xl bg-white dark:bg-gDarkBg border border-gLightBorder dark:border-gDarkBorder">
+              <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/40 text-googleBlue flex items-center justify-center text-xl mb-3">
+                🗂️
+              </div>
+              <h4 class="text-xs font-bold text-gray-900 dark:text-white">Grounding Zero-ETL</h4>
+              <p class="text-[11px] text-gray-600 dark:text-gray-400 mt-1">
+                Conexión nativa a Google Drive, Gmail, Docs, Sheets, BigQuery, Jira y Salesforce.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white dark:bg-gDarkBg border border-gLightBorder dark:border-gDarkBorder">
+              <div class="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-900/40 text-purple-600 flex items-center justify-center text-xl mb-3">
+                📚
+              </div>
+              <h4 class="text-xs font-bold text-gray-900 dark:text-white">Ventana Multimodal Masiva</h4>
+              <p class="text-[11px] text-gray-600 dark:text-gray-400 mt-1">
+                Procesa hasta 1M-2M de tokens de contexto (cientos de páginas técnicas, audios o bases de datos).
+              </p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white dark:bg-gDarkBg border border-gLightBorder dark:border-gDarkBorder">
+              <div class="w-10 h-10 rounded-xl bg-green-100 dark:bg-green-900/40 text-googleGreen flex items-center justify-center text-xl mb-3">
+                🛡️
+              </div>
+              <h4 class="text-xs font-bold text-gray-900 dark:text-white">Privacidad Grado Bancario</h4>
+              <p class="text-[11px] text-gray-600 dark:text-gray-400 mt-1">
+                Tus datos corporativos <strong>NUNCA</strong> entrenan los modelos públicos de Google.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white dark:bg-gDarkBg border border-gLightBorder dark:border-gDarkBorder">
+              <div class="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-900/40 text-googleRed flex items-center justify-center text-xl mb-3">
+                🔒
+              </div>
+              <h4 class="text-xs font-bold text-gray-900 dark:text-white">Control IAM Estricto</h4>
+              <p class="text-[11px] text-gray-600 dark:text-gray-400 mt-1">
+                El agente solo responde con documentos a los que el empleado específico tiene permiso en Cloud IAM.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 3 Real-World Enterprise Use Cases Cards -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <span class="text-[10px] font-black uppercase text-gray-400 tracking-wider">Aplicación en la Vida Real</span>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">
+                3 Casos de Uso Empresariales el Lunes por la Mañana
+              </h3>
+            </div>
+            <span class="text-xs text-googleBlue font-bold hidden sm:inline">Impacto Medible</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- Case 1: HR Knowledge -->
+            <div class="bento-card bg-white dark:bg-gDarkSurface rounded-3xl p-6 border border-gLightBorder dark:border-gDarkBorder shadow-bento dark:shadow-bento-dark flex flex-col justify-between">
+              <div>
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 dark:bg-blue-900/50 text-googleBlue">
+                  Recursos Humanos & Políticas
+                </span>
+                <h4 class="text-lg font-bold text-gray-900 dark:text-white mt-3">Agente de Soporte al Empleado</h4>
+                <p class="text-xs text-gray-600 dark:text-gray-300 mt-2 leading-relaxed">
+                  En lugar de que RRHH responda 200 veces sobre días de vacaciones o seguros de salud, el agente consulta los reglamentos vigentes en Drive y redacta respuestas con enlaces directos.
+                </p>
+              </div>
+              <div class="mt-4 pt-4 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between text-xs">
+                <span class="text-gray-400 font-medium">Métrica clave:</span>
+                <span class="text-googleGreen font-black">-70% tickets repetitivos</span>
+              </div>
+            </div>
+
+            <!-- Case 2: B2B Sales Proposal -->
+            <div class="bento-card bg-white dark:bg-gDarkSurface rounded-3xl p-6 border border-gLightBorder dark:border-gDarkBorder shadow-bento dark:shadow-bento-dark flex flex-col justify-between">
+              <div>
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 dark:bg-green-900/50 text-googleGreen">
+                  Ventas & Negocios B2B
+                </span>
+                <h4 class="text-lg font-bold text-gray-900 dark:text-white mt-3">Generador de Propuestas</h4>
+                <p class="text-xs text-gray-600 dark:text-gray-300 mt-2 leading-relaxed">
+                  Cruza las notas de las reuniones en Google Meet con la lista de precios oficial en Google Sheets y los términos del contrato para armar una propuesta comercial personalizada en 3 minutos.
+                </p>
+              </div>
+              <div class="mt-4 pt-4 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between text-xs">
+                <span class="text-gray-400 font-medium">Métrica clave:</span>
+                <span class="text-googleBlue font-black">De 4 horas a 5 minutos</span>
+              </div>
+            </div>
+
+            <!-- Case 3: Operational BigQuery -->
+            <div class="bento-card bg-white dark:bg-gDarkSurface rounded-3xl p-6 border border-gLightBorder dark:border-gDarkBorder shadow-bento dark:shadow-bento-dark flex flex-col justify-between">
+              <div>
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300">
+                  Operaciones & Finanzas
+                </span>
+                <h4 class="text-lg font-bold text-gray-900 dark:text-white mt-3">Inteligencia sobre BigQuery</h4>
+                <p class="text-xs text-gray-600 dark:text-gray-300 mt-2 leading-relaxed">
+                  Permite a directores consultar en español coloquial: <em>"¿Cuáles fueron los 3 productos con más devoluciones este mes y por qué motivo?"</em>. El agente genera el SQL, analiza y resume.
+                </p>
+              </div>
+              <div class="mt-4 pt-4 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between text-xs">
+                <span class="text-gray-400 font-medium">Métrica clave:</span>
+                <span class="text-purple-600 font-black">Democratización de datos</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- BENTO 4: GOOGLE CLOUD STACK OVERVIEW                                    -->
+    <!-- ======================================================================= -->
+    <section id="section-stack" class="bento-section">
+      <div class="bento-card bg-white dark:bg-gDarkSurface rounded-3xl p-6 sm:p-8 border border-gLightBorder dark:border-gDarkBorder shadow-bento dark:shadow-bento-dark">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <span class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-amber-100 dark:bg-yellow-950/60 text-amber-800 dark:text-yellow-300 border border-amber-200 dark:border-amber-800">
+              Arquitectura de Nube
+            </span>
+            <h2 class="text-2xl font-black text-gray-900 dark:text-white mt-1">
+              El Stack de Agentes en Google Cloud
+            </h2>
+            <p class="text-xs text-gray-600 dark:text-gray-400">
+              Tres capas según el nivel de personalización técnica de tu equipo:
+            </p>
+          </div>
+          <span class="text-xs font-mono font-bold text-gray-400">GCP Full Ecosystem</span>
+        </div>
+
+        <!-- 3 Layers Stack Visualization -->
+        <div class="space-y-4">
+          
+          <!-- Layer 1: SaaS / Ready to Consume -->
+          <div class="p-5 rounded-2xl bg-gradient-to-r from-red-500/10 to-amber-500/10 dark:from-red-950/30 dark:to-amber-950/30 border border-red-200 dark:border-red-900/50">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+              <div class="flex items-center space-x-3">
+                <span class="w-8 h-8 rounded-lg bg-googleRed text-white text-xs font-black flex items-center justify-center">1</span>
+                <div>
+                  <h4 class="text-sm font-bold text-gray-900 dark:text-white">Capa SaaS & Consumo Directo (Zero-Code)</h4>
+                  <p class="text-xs text-gray-600 dark:text-gray-300">Para usuarios de negocio y productividad inmediata sin programar.</p>
+                </div>
+              </div>
+              <div class="flex gap-2">
+                <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-white dark:bg-gDarkSurface border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200">Gemini Enterprise</span>
+                <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-white dark:bg-gDarkSurface border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200">Google-built Agents</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Layer 2: Platform / Builder -->
+          <div class="p-5 rounded-2xl bg-gradient-to-r from-blue-500/10 to-emerald-500/10 dark:from-blue-950/30 dark:to-emerald-950/30 border border-blue-200 dark:border-blue-900/50">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+              <div class="flex items-center space-x-3">
+                <span class="w-8 h-8 rounded-lg bg-googleBlue text-white text-xs font-black flex items-center justify-center">2</span>
+                <div>
+                  <h4 class="text-sm font-bold text-gray-900 dark:text-white">Capa de Plataforma (Low-Code & Code-First)</h4>
+                  <p class="text-xs text-gray-600 dark:text-gray-300">Para desarrolladores y arquitectos que crean agentes a la medida.</p>
+                </div>
+              </div>
+              <div class="flex gap-2">
+                <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-white dark:bg-gDarkSurface border border-blue-300 dark:border-blue-800 text-googleBlue dark:text-blue-300">Vertex AI Agent Builder</span>
+                <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-white dark:bg-gDarkSurface border border-yellow-300 dark:border-yellow-800 text-amber-700 dark:text-yellow-300">Agent Dev Kit (ADK)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Layer 3: Infrastructure / Foundation Models -->
+          <div class="p-5 rounded-2xl bg-gradient-to-r from-purple-500/10 to-indigo-500/10 dark:from-purple-950/30 dark:to-indigo-950/30 border border-purple-200 dark:border-purple-900/50">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+              <div class="flex items-center space-x-3">
+                <span class="w-8 h-8 rounded-lg bg-purple-600 text-white text-xs font-black flex items-center justify-center">3</span>
+                <div>
+                  <h4 class="text-sm font-bold text-gray-900 dark:text-white">Capa de Infraestructura & Cómputo</h4>
+                  <p class="text-xs text-gray-600 dark:text-gray-300">El cerebro y los runtimes que alimentan la ejecución distribuida.</p>
+                </div>
+              </div>
+              <div class="flex gap-2">
+                <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-white dark:bg-gDarkSurface border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200">Gemini 1.5/2.0 (Pro/Flash)</span>
+                <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-white dark:bg-gDarkSurface border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200">Cloud Run / GKE</span>
+                <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-white dark:bg-gDarkSurface border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200">Agent Engine</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- INTERACTIVE FLASHCARDS & VOCABULARY (BENTO 5)                           -->
+    <!-- ======================================================================= -->
+    <section id="section-quiz" class="bento-section">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Flashcards (7 Cols) -->
+        <div class="lg:col-span-7 bento-card bg-white dark:bg-gDarkSurface rounded-3xl p-6 sm:p-8 border border-gLightBorder dark:border-gDarkBorder shadow-bento dark:shadow-bento-dark">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <span class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-googleBlueLight text-googleBlue dark:bg-blue-950/60 dark:text-blue-300 border border-blue-200 dark:border-blue-900">
+                Vocabulario Clave
+              </span>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white mt-1">
+                Fichas Interactivas (Toca para voltear)
+              </h3>
+            </div>
+            <span class="text-xs text-gray-400 font-mono">4 Flashcards</span>
+          </div>
+
+          <!-- Flashcards Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            
+            <!-- Card 1 -->
+            <div class="perspective-1000 h-36 cursor-pointer" onclick="this.classList.toggle('flipped')">
+              <div class="relative w-full h-full transform-style-3d transition-transform duration-500 rounded-2xl shadow-sm border border-gray-200 dark:border-gDarkBorder flashcard-inner">
+                <!-- Front -->
+                <div class="absolute inset-0 backface-hidden p-4 rounded-2xl bg-gray-50 dark:bg-gDarkBg flex flex-col justify-between">
+                  <span class="text-[10px] font-mono text-googleBlue uppercase font-bold">Concepto #1</span>
+                  <h4 class="text-sm font-bold text-gray-900 dark:text-white">Tool Calling (Function Calling)</h4>
+                  <span class="text-[10px] text-gray-400 flex items-center justify-between">
+                    <span>Toca para ver definición</span>
+                    <span>&circlearrowright;</span>
+                  </span>
+                </div>
+                <!-- Back -->
+                <div class="absolute inset-0 backface-hidden rotate-y-180 p-4 rounded-2xl bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-900 flex flex-col justify-between">
+                  <p class="text-xs text-gray-800 dark:text-gray-200 leading-snug">
+                    Capacidad del LLM de estructurar llamadas en JSON para invocar funciones, bases de datos o APIs externas.
+                  </p>
+                  <span class="text-[9px] font-bold text-googleBlue">✓ Fundamental para que el agente actúe</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="perspective-1000 h-36 cursor-pointer" onclick="this.classList.toggle('flipped')">
+              <div class="relative w-full h-full transform-style-3d transition-transform duration-500 rounded-2xl shadow-sm border border-gray-200 dark:border-gDarkBorder flashcard-inner">
+                <!-- Front -->
+                <div class="absolute inset-0 backface-hidden p-4 rounded-2xl bg-gray-50 dark:bg-gDarkBg flex flex-col justify-between">
+                  <span class="text-[10px] font-mono text-purple-600 uppercase font-bold">Concepto #2</span>
+                  <h4 class="text-sm font-bold text-gray-900 dark:text-white">Patrón ReAct</h4>
+                  <span class="text-[10px] text-gray-400 flex items-center justify-between">
+                    <span>Toca para ver definición</span>
+                    <span>&circlearrowright;</span>
+                  </span>
+                </div>
+                <!-- Back -->
+                <div class="absolute inset-0 backface-hidden rotate-y-180 p-4 rounded-2xl bg-purple-50 dark:bg-purple-950 border border-purple-200 dark:border-purple-900 flex flex-col justify-between">
+                  <p class="text-xs text-gray-800 dark:text-gray-200 leading-snug">
+                    Ciclo iterativo: <em>Thought</em> (razonar) &rarr; <em>Action</em> (ejecutar herramienta) &rarr; <em>Observation</em> (evaluar resultado).
+                  </p>
+                  <span class="text-[9px] font-bold text-purple-600">✓ Previene alucinaciones</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="perspective-1000 h-36 cursor-pointer" onclick="this.classList.toggle('flipped')">
+              <div class="relative w-full h-full transform-style-3d transition-transform duration-500 rounded-2xl shadow-sm border border-gray-200 dark:border-gDarkBorder flashcard-inner">
+                <!-- Front -->
+                <div class="absolute inset-0 backface-hidden p-4 rounded-2xl bg-gray-50 dark:bg-gDarkBg flex flex-col justify-between">
+                  <span class="text-[10px] font-mono text-googleGreen uppercase font-bold">Concepto #3</span>
+                  <h4 class="text-sm font-bold text-gray-900 dark:text-white">Grounding</h4>
+                  <span class="text-[10px] text-gray-400 flex items-center justify-between">
+                    <span>Toca para ver definición</span>
+                    <span>&circlearrowright;</span>
+                  </span>
+                </div>
+                <!-- Back -->
+                <div class="absolute inset-0 backface-hidden rotate-y-180 p-4 rounded-2xl bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-900 flex flex-col justify-between">
+                  <p class="text-xs text-gray-800 dark:text-gray-200 leading-snug">
+                    Anclar y fundamentar las respuestas del modelo en fuentes de verdad verificadas (archivos de la empresa o Google Search).
+                  </p>
+                  <span class="text-[9px] font-bold text-googleGreen">✓ Cero inventos</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="perspective-1000 h-36 cursor-pointer" onclick="this.classList.toggle('flipped')">
+              <div class="relative w-full h-full transform-style-3d transition-transform duration-500 rounded-2xl shadow-sm border border-gray-200 dark:border-gDarkBorder flashcard-inner">
+                <!-- Front -->
+                <div class="absolute inset-0 backface-hidden p-4 rounded-2xl bg-gray-50 dark:bg-gDarkBg flex flex-col justify-between">
+                  <span class="text-[10px] font-mono text-googleRed uppercase font-bold">Concepto #4</span>
+                  <h4 class="text-sm font-bold text-gray-900 dark:text-white">Human-in-the-Loop (HITL)</h4>
+                  <span class="text-[10px] text-gray-400 flex items-center justify-between">
+                    <span>Toca para ver definición</span>
+                    <span>&circlearrowright;</span>
+                  </span>
+                </div>
+                <!-- Back -->
+                <div class="absolute inset-0 backface-hidden rotate-y-180 p-4 rounded-2xl bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-900 flex flex-col justify-between">
+                  <p class="text-xs text-gray-800 dark:text-gray-200 leading-snug">
+                    Diseño de seguridad donde el agente prepara y valida una acción crítica, pero exige confirmación humana para ejecutarla.
+                  </p>
+                  <span class="text-[9px] font-bold text-googleRed">✓ Previene transacciones erróneas</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 3-Question Visual Quiz (5 Cols) -->
+        <div class="lg:col-span-5 bento-card bg-white dark:bg-gDarkSurface rounded-3xl p-6 sm:p-8 border border-gLightBorder dark:border-gDarkBorder shadow-bento dark:shadow-bento-dark flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-googleGreenLight text-googleGreen dark:bg-green-950/60 dark:text-green-300 border border-green-200 dark:border-green-900">
+                Comprueba tu Aprendizaje
+              </span>
+              <span id="quizScoreText" class="text-xs font-mono font-bold text-googleBlue">0/2 Correctas</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">
+              Mini-Test de Comprensión
+            </h3>
+            <p class="text-xs text-gray-500 mb-4">
+              Pon a prueba tus fundamentos antes de dar por terminado el estudio:
+            </p>
+
+            <div class="space-y-4 text-xs">
+              
+              <!-- Q1 -->
+              <div class="p-3.5 rounded-2xl bg-gray-50 dark:bg-gDarkBg border border-gray-200 dark:border-gDarkBorder">
+                <span class="font-bold text-gray-900 dark:text-white block mb-2">
+                  1. ¿Qué frase define mejor la diferencia entre un Chatbot y un Agente?
+                </span>
+                <div class="space-y-1.5">
+                  <label class="flex items-center gap-2 cursor-pointer p-1.5 rounded hover:bg-gray-200/50 dark:hover:bg-gray-800">
+                    <input type="radio" name="vz_q1" value="A" class="text-googleBlue">
+                    <span>A) El chatbot tiene más memoria de tokens</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer p-1.5 rounded hover:bg-gray-200/50 dark:hover:bg-gray-800">
+                    <input type="radio" name="vz_q1" value="B" class="text-googleBlue">
+                    <span class="font-semibold text-googleBlue">B) Un chatbot genera texto; un agente altera su entorno</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Q2 -->
+              <div class="p-3.5 rounded-2xl bg-gray-50 dark:bg-gDarkBg border border-gray-200 dark:border-gDarkBorder">
+                <span class="font-bold text-gray-900 dark:text-white block mb-2">
+                  2. ¿Qué ocurre con tus datos en Gemini Enterprise?
+                </span>
+                <div class="space-y-1.5">
+                  <label class="flex items-center gap-2 cursor-pointer p-1.5 rounded hover:bg-gray-200/50 dark:hover:bg-gray-800">
+                    <input type="radio" name="vz_q2" value="A" class="text-googleBlue">
+                    <span class="font-semibold text-googleBlue">A) NUNCA se usan para entrenar modelos públicos y respetan IAM</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer p-1.5 rounded hover:bg-gray-200/50 dark:hover:bg-gray-800">
+                    <input type="radio" name="vz_q2" value="B" class="text-googleBlue">
+                    <span>B) Se hacen públicos al cabo de 30 días</span>
+                  </label>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-gLightBorder dark:border-gDarkBorder flex items-center justify-between">
+            <button onclick="checkVisualQuiz()" class="px-5 py-2 rounded-xl bg-googleBlue hover:bg-googleBlueHover text-white text-xs font-bold transition shadow-sm">
+              Validar Respuestas
+            </button>
+            <span id="quizFeedbackMessage" class="text-xs font-bold text-gray-500"></span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- FOOTER                                                                    -->
+  <!-- ========================================================================= -->
+  <footer class="bg-white dark:bg-gDarkSurface border-t border-gLightBorder dark:border-gDarkBorder mt-12 py-8 transition-colors no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500 dark:text-gray-400">
+      <div class="flex items-center space-x-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-googleBlue inline-block"></span>
+        <span class="font-bold text-gray-800 dark:text-gray-200">Google Cloud Learning Resource</span>
+        <span>&bull;</span>
+        <span>Material para Estudiantes</span>
+      </div>
+      <div>
+        <span>Diseñado bajo la especificación de Vertex AI Agent Builder & Gemini Enterprise</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT: DYNAMIC LOGIC, SIMULATOR & CALCULATOR                         -->
+  <!-- ========================================================================= -->
+  <script>
+    // Theme toggle
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    themeToggleBtn.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    }
+
+    // Filter Bento Sections
+    function filterBento(category) {
+      document.querySelectorAll('.filter-pill').forEach(btn => {
+        btn.classList.remove('active', 'bg-googleBlue', 'text-white');
+        btn.classList.add('bg-white', 'dark:bg-gDarkBg', 'text-gray-700', 'dark:text-gray-300');
+      });
+      event.target.classList.add('active', 'bg-googleBlue', 'text-white');
+      event.target.classList.remove('bg-white', 'dark:bg-gDarkBg', 'text-gray-700', 'dark:text-gray-300');
+
+      const allSections = document.querySelectorAll('.bento-section');
+      if (category === 'all') {
+        allSections.forEach(s => s.classList.remove('hidden'));
+        return;
+      }
+
+      allSections.forEach(s => {
+        if (s.id === `section-${category}`) {
+          s.classList.remove('hidden');
+          s.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          s.classList.add('hidden');
+        }
+      });
+    }
+
+    // Simulator Steps data
+    const simSteps = [
+      {
+        num: 1,
+        title: "Paso 1: Recepción de Intención Humana",
+        desc: "El usuario introduce una consulta financiera compleja. El agente identifica que la tarea requiere extraer datos verídicos y justificar una discrepancia.",
+        state: "INPUT_ANALYSIS"
+      },
+      {
+        num: 2,
+        title: "Paso 2: Deducción Lógica (Thought)",
+        desc: "El modelo determina internamente: 'No tengo los balances en mi ventana de contexto. Debo estructurar una consulta SQL hacia la tabla costos_infra en BigQuery'.",
+        state: "REASONING_LOOP"
+      },
+      {
+        num: 3,
+        title: "Paso 3: Tool Calling en BigQuery (Action)",
+        desc: "El agente genera un JSON con la llamada a la función SQL autorizada y la envía al runtime de Google Cloud a través de Apigee / IAM.",
+        state: "TOOL_EXECUTION"
+      },
+      {
+        num: 4,
+        title: "Paso 4: Observación y Síntesis Final",
+        desc: "El motor de base de datos responde con los números exactos ($78,500 USD). El modelo sintetiza la respuesta sin inventar datos ni alucinar.",
+        state: "GROUNDED_RESPONSE"
+      }
+    ];
+
+    let currentSimStep = 1;
+
+    function updateSimUI() {
+      document.getElementById('simStepIndicator').textContent = `${currentSimStep}/4`;
+      
+      for (let i = 1; i <= 4; i++) {
+        const card = document.getElementById(`simCard${i}`);
+        if (i === currentSimStep) {
+          card.classList.remove('opacity-40');
+          card.classList.add('border-2', 'border-purple-500', 'shadow-md');
+        } else {
+          card.classList.add('opacity-40');
+          card.classList.remove('border-2', 'border-purple-500', 'shadow-md');
+        }
+      }
+
+      const data = simSteps[currentSimStep - 1];
+      document.getElementById('simPayloadTitle').textContent = data.title;
+      document.getElementById('simPayloadDesc').textContent = data.desc;
+      document.getElementById('simPayloadState').textContent = data.state;
+    }
+
+    function goToSimStep(step) {
+      currentSimStep = step;
+      updateSimUI();
+    }
+
+    document.getElementById('simNextBtn').addEventListener('click', () => {
+      currentSimStep = (currentSimStep % 4) + 1;
+      updateSimUI();
+    });
+
+    document.getElementById('simPrevBtn').addEventListener('click', () => {
+      currentSimStep = currentSimStep === 1 ? 4 : currentSimStep - 1;
+      updateSimUI();
+    });
+
+    // Architecture Calculator
+    function runArchitectureCalc() {
+      const steps = document.querySelector('input[name="calc_steps"]:checked')?.value;
+      const adapt = document.querySelector('input[name="calc_adapt"]:checked')?.value;
+      const tools = document.querySelector('input[name="calc_tools"]:checked')?.value;
+
+      const box = document.getElementById('calcVerdictBox');
+      const title = document.getElementById('calcVerdictTitle');
+      const desc = document.getElementById('calcVerdictDesc');
+
+      if (steps === 'single' && tools === 'no') {
+        box.className = "mt-6 p-4 rounded-2xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800";
+        title.textContent = "💬 Arquitectura: LLM API Simple (Gemini Flash)";
+        title.className = "text-sm font-black text-googleBlue";
+        desc.textContent = "Es una tarea de inferencia aislada. Diseñar un agente aquí sobrecargaría tu arquitectura innecesariamente.";
+      } else if (steps === 'multi' && adapt === 'no') {
+        box.className = "mt-6 p-4 rounded-2xl bg-amber-50 dark:bg-yellow-950/30 border border-amber-200 dark:border-yellow-800";
+        title.textContent = "⚙️ Arquitectura: Workflow Determinista (Cloud Functions)";
+        title.className = "text-sm font-black text-amber-700 dark:text-yellow-400";
+        desc.textContent = "Las reglas son 100% fijas y predecibles. El código clásico es instantáneo, no alucina y cuesta una fracción de centavo.";
+      } else {
+        box.className = "mt-6 p-4 rounded-2xl bg-emerald-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800";
+        title.textContent = "🤖 Arquitectura: Agente Autónomo (Vertex AI / ADK)";
+        title.className = "text-sm font-black text-googleGreen";
+        desc.textContent = "Cumple con la tríada perfecta: tareas encadenadas, incertidumbre adaptativa y necesidad de accionar herramientas informáticas.";
+      }
+    }
+
+    // Flashcard Flip support via JS toggle
+    document.querySelectorAll('.flashcard-inner').forEach(card => {
+      card.parentElement.addEventListener('click', () => {
+        card.classList.toggle('rotate-y-180');
+      });
+    });
+
+    // Visual Quiz Evaluation
+    function checkVisualQuiz() {
+      const q1 = document.querySelector('input[name="vz_q1"]:checked')?.value;
+      const q2 = document.querySelector('input[name="vz_q2"]:checked')?.value;
+      const msg = document.getElementById('quizFeedbackMessage');
+      const scoreText = document.getElementById('quizScoreText');
+
+      let correct = 0;
+      if (q1 === 'B') correct++;
+      if (q2 === 'A') correct++;
+
+      scoreText.textContent = `${correct}/2 Correctas`;
+
+      if (correct === 2) {
+        msg.className = "text-xs font-bold text-googleGreen";
+        msg.textContent = "✓ ¡Excelente! Tienes los conceptos claros.";
+      } else {
+        msg.className = "text-xs font-bold text-amber-600";
+        msg.textContent = "Revisa las respuestas marcadas e inténtalo de nuevo.";
+      }
+    }
+  </script>
+</body>
+</html>
